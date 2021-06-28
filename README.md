@@ -24,7 +24,7 @@ Este é um repositório temporário que contém os arquivos necessários para ex
 5. Aguarde a configuração do ambiente...
 
 * Após a configuração do ambiente, o servidor já deve estar disponível para utilização.
-* Para melhor visualização e utilização do servidor um _swagger_ está disponível no endereço ```http://localhost:3001/swager```
+* Para melhor visualização e utilização do servidor um _swagger_ está disponível no endereço ```http://localhost:3001/swagger```
 
 ***
 
