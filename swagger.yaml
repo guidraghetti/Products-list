@@ -1,0 +1,208 @@
+swagger: "2.0"
+info:
+  description: "This is an API Swagger to search and edit products"
+  version: "1.0.0"
+  title: "Swagger Products Info"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3001"
+basePath: "/"
+tags:
+  - name: "Product"
+    description: "Product methods"
+schemes:
+  - "http"
+
+paths:
+  /product:
+    post:
+      tags:
+        - "Product"
+      summary: "Post a product"
+      description: "Post a new product on database "
+      operationId: "postProduct"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Product object need to be added"
+          required: true
+          schema:
+            $ref: "#/definitions/Product"
+      responses:
+        "500":
+          description: "Internal Server Error"
+          schema:
+            type: "object"
+            properties:
+              error:
+                type: "string"
+        "200":
+          description: "Successful Operation"
+          schema:
+            $ref: "#/definitions/Product"
+    put:
+      tags:
+        - "Product"
+      summary: "Edit a product"
+      description: "Pass id and the field to be updated"
+      operationId: "updateProduct"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Products fields need to be added"
+          required: true
+          schema:
+            $ref: "#/definitions/EditProduct"
+      responses:
+        "500":
+          description: "Internal Server Error"
+          schema:
+            type: "object"
+            properties:
+              error:
+                type: "string"
+        "404":
+          description: "Product not found"
+          schema:
+            type: "object"
+            properties:
+              error:
+                type: "string"
+        "400":
+          description: "Bad Request"
+          schema:
+            type: "object"
+            properties:
+              error:
+                type: "string"
+        "200":
+          description: "Successful Operation"
+          schema:
+            $ref: "#/definitions/Product"
+    get:
+      tags:
+        - "Product"
+      summary: "Filter products"
+      description: "Filter products passing query parameters. If all query field are filled, just the first one will be considered. In order to execute properly, just one field must be filled"
+      operationId: "filterProducts"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "name"
+          type: "string"
+          in: query
+          description: "Query parameter name"
+        - name: "categories"
+          type: "string"
+          in: query
+          description: "Query parameter categories"
+        - name: "brand"
+          type: "string"
+          in: query
+          description: "Query parameter brand"
+      responses:
+        "404":
+          description: "Not Found"
+          schema:
+            type: "object"
+            properties:
+              error:
+                type: "string"
+        "200":
+          description: "Successful Operation"
+          schema:
+            $ref: "#/definitions/Products"
+
+  /product/getAll:
+    get:
+      tags:
+        - "Product"
+      summary: "Get all products"
+      description: "Return all products armazenated on database"
+      operationId: "getAllProducts"
+      produces:
+        - "application/json"
+      responses:
+        "500":
+          description: "Internal Server Error"
+          schema:
+            type: "object"
+            properties:
+              error:
+                type: "string"
+
+        "200":
+          description: "Successfull Operation"
+          schema:
+            $ref: "#/definitions/Products"
+
+definitions:
+  Product:
+    type: "object"
+    required:
+      - id
+      - image
+      - name
+      - categories
+      - price
+    properties:
+      id:
+        type: "integer"
+        description: "Id of product"
+      image:
+        type: "string"
+        description: "Image url of product"
+      name:
+        type: "string"
+        description: "Name of product"
+      categories:
+        type: "string"
+        description: "Categories of product"
+      price:
+        type: "number"
+        format: "double"
+        description: "Price of product"
+      brand:
+        type: "string"
+        description: "Brand of product"
+  EditProduct:
+    type: "object"
+    required:
+      - id
+    properties:
+      id:
+        type: "integer"
+        description: "Id of product"
+      image:
+        type: "string"
+        description: "Image url of product"
+      name:
+        type: "string"
+        description: "Name of product"
+      categories:
+        type: "string"
+        description: "Categories of product"
+      price:
+        type: "number"
+        format: "double"
+        description: "Price of product"
+      brand:
+        type: "string"
+        description: "Brand of product"
+  Products:
+    type: "array"
+    items:
+      $ref: "#/definitions/Product"
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
