@@ -56,7 +56,7 @@ Para executar os testes basta executar na raiz do projeto o comando:
  * Node
  * Sequelize - utilizada por possuir capacidade de fazer migrações de esquemas de banco de dados e alimentar o mesmo com dados (_migrations_ e _seeders_)
  * Mocha - _framework_ para realização de suite testes de fácil utilização
- * Chai - biblioteca para asserção do desenvolvidos dos testes.
+ * Chai - biblioteca para asserção do desenvolvimento dos testes.
  * Swagger - utilizada para facilitar a utilização do servidor, disponibilizando uma _interface_ gráfica
  * Yarn - gerenciador de pacotes com melhor performance que o _NPM_
  * Express - _framework_ padrão do Node para criação de APIs
