@@ -5,7 +5,7 @@
   "type": "commonjs",
   "scripts": {
     "start": "NODE_ENV=development yarn install && node ./createDb.js && yarn sequelize db:migrate && yarn sequelize db:seed:undo:all && yarn sequelize db:seed:all && nodemon ./src/server.js",
-    "test": "NODE_ENV=test node ./createDb.js && yarn sequelize db:migrate && yarn sequelize db:seed:undo:all && yarn sequelize db:seed:all  && nyc mocha"
+    "test": "NODE_ENV=test yarn install && node ./createDb.js && yarn sequelize db:migrate && yarn sequelize db:seed:undo:all && yarn sequelize db:seed:all  && nyc mocha"
   },
   "repository": {
     "type": "git",
