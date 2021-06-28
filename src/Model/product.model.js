@@ -8,6 +8,7 @@ const Product = sequelize.define(
       type: Sequelize.INTEGER,
       allowNull: false,
       primaryKey: true,
+      unique: true,
     },
     image: {
       type: Sequelize.TEXT,
